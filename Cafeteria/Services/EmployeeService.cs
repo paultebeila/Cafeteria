@@ -12,10 +12,6 @@ namespace Cafeteria.Services
         private const decimal BonusPerThreshold = 500m;
 
         public EmployeeService(ApplicationDbContext db) { _db = db; }
-
-
-
-        //////////////////*/////////////////////////
         public async Task<DepositResult> DepositAsync(string employeeNumber, decimal amount)
         {
             if (amount <= 0)
