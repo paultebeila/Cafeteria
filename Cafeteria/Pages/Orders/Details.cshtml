@@ -1,0 +1,30 @@
+﻿@page
+@model Cafeteria.Pages.Orders.DetailsModel
+@{
+    ViewData["Title"] = "Order Details";
+}
+
+<h2>Order #@Model.Order.Id</h2>
+<p><strong>Employee:</strong> @Model.Order.Employee.Name</p>
+<p><strong>Status:</strong> @Model.Order.Status</p>
+<p><strong>Total:</strong> R@Model.Order.TotalAmount.ToString("N2")</p>
+
+<h3>Items</h3>
+<table class="table table-striped">
+    <thead>
+        <tr><th>Item</th><th>Qty</th><th>Unit Price</th><th>Total</th></tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Order.Items)
+        {
+            <tr>
+                <td>@item.MenuItem.Name</td>
+                <td>@item.Quantity</td>
+                <td>R@item.UnitPriceAtTimeOfOrder.ToString("N2")</td>
+                <td>R@(item.Quantity* item.UnitPriceAtOrder).ToString("N2")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-page="Index" class="btn btn-secondary">Back</a>

@@ -1,0 +1,27 @@
+﻿@page
+@model Cafeteria.Pages.Orders.IndexModel
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h2>Your Orders</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr><th>Order #</th><th>Date</th><th>Total</th><th>Status</th><th></th></tr>
+    </thead>
+    <tbody>
+        @foreach (var o in Model.Orders)
+        {
+            <tr>
+                <td>@o.Id</td>
+                <td>@o.OrderDate.ToString("yyyy-MM-dd HH:mm")</td>
+                <td>R@o.TotalAmount.ToString("N2")</td>
+                <td>@o.Status</td>
+                <td>
+                    <a asp-page="Details" asp-route-id="@o.Id" class="btn btn-info btn-sm">Details</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

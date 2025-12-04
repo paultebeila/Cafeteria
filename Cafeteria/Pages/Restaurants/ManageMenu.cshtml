@@ -1,0 +1,47 @@
+﻿@page
+@model Cafeteria.Pages.Restaurants.ManageMenuModel
+@{
+    ViewData["Title"] = "Manage Menu";
+}
+
+<h2>@Model.Restaurant.Name - Menu</h2>
+
+<h4>Add Menu Item</h4>
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="NewMenuItem.Name"></label>
+        <input asp-for="NewMenuItem.Name" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewMenuItem.Description"></label>
+        <input asp-for="NewMenuItem.Description" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NewMenuItem.Price"></label>
+        <input asp-for="NewMenuItem.Price" class="form-control" />
+    </div>
+    <button type="submit" asp-page-handler="AddMenuItem" class="btn btn-success">Add Item</button>
+</form>
+
+<h4>Menu Items</h4>
+<table class="table table-striped">
+    <thead><tr><th>Name</th><th>Description</th><th>Price</th><th>Actions</th></tr></thead>
+    <tbody>
+        @foreach (var item in Model.MenuItems)
+        {
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.Description</td>
+                <td>R@item.Price.ToString("N2")</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="menuItemId" value="@item.Id" />
+                        <button type="submit" asp-page-handler="DeleteMenuItem" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a class="btn btn-secondary" asp-page="Index">Back to Restaurants</a>

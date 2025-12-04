@@ -8,7 +8,7 @@ namespace Cafeteria.Models
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
-        public required Employee Employee { get; set; }
+        public Employee Employee { get; set; }
 
         public DateTime OrderDate { get; set; }
         // saved copy of amount at time of ordering

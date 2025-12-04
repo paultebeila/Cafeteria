@@ -1,0 +1,27 @@
+﻿@page
+@model Cafeteria.Pages.Restaurants.EditModel
+@{
+    ViewData["Title"] = "Edit Restaurant";
+}
+
+<h2>Edit Restaurant</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label asp-for="Restaurant.Name"></label>
+        <input asp-for="Restaurant.Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Restaurant.LocationDescription"></label>
+        <input asp-for="Restaurant.LocationDescription" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Restaurant.ContactNumber"></label>
+        <input asp-for="Restaurant.ContactNumber" class="form-control" />
+    </div>
+
+    <button class="btn btn-success" type="submit">Save</button>
+    <a asp-page="Index" class="btn btn-secondary">Back</a>
+</form>

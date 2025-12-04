@@ -1,0 +1,36 @@
+﻿@page
+@model Cafeteria.Pages.Orders.CreateModel
+@{
+    ViewData["Title"] = "Place Order";
+}
+
+<h2>Place Order</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label>Select Restaurant</label>
+        <select asp-for="SelectedRestaurantId" asp-items="@(new SelectList(Model.Restaurants, "Id", "Name"))" class="form-select"></select>
+    </div>
+    <button type="submit" asp-page-handler="LoadMenu" class="btn btn-primary">Load Menu</button>
+</form>
+
+@if (Model.MenuItems?.Count > 0)
+{
+    <form method="post">
+        <input type="hidden" asp-for="SelectedRestaurantId" />
+        <table class="table table-striped mt-3">
+            <thead><tr><th>Item</th><th>Price</th><th>Quantity</th></tr></thead>
+            <tbody>
+                @foreach (var m in Model.MenuItems)
+                {
+                    <tr>
+                        <td>@m.Name</td>
+                        <td>R@m.Price.ToString("N2")</td>
+                        <td><input type="number" name="Quantities[@m.Id]" value="0" min="0" class="form-control" /></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <button type="submit" asp-page-handler="PlaceOrder" class="btn btn-success">Place Order</button>
+    </form>
+}
